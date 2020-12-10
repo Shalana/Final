@@ -69,7 +69,8 @@ memory_partition_unit::memory_partition_unit(unsigned partition_id,
       m_gpu(gpu),
       m_ramulator_wrapper(ramulator_wrapper) {  //Final;
   m_dram = new dram_t(m_id, m_config, m_stats, this, gpu);
-
+  return_q_size=m_config->gpgpu_dram_return_queue_size; //Final
+  sched_q_size = config->gpgpu_frfcfs_dram_sched_queue_size; //Final
   m_sub_partition = new memory_sub_partition
       *[m_config->m_n_sub_partition_per_memory_channel];
   for (unsigned p = 0; p < m_config->m_n_sub_partition_per_memory_channel;
