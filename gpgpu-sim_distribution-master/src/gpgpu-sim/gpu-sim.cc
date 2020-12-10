@@ -660,7 +660,7 @@ void gpgpu_sim_config::reg_options(option_parser_t opp) {
    //Tara
    option_parser_register(opp, "-gpgpu_ramulator_config", OPT_CSTR, &gpgpu_ramulator_config , " Ramulator config file address.","/home/nastaran/ramulator+gpu/amoebatc/src/ramulator/configs/GDDR5-config.cfg");
    option_parser_register(opp, "-gpgpu_ramulator_cache_line_size", OPT_INT32, &gpgpu_ramulator_cache_line_size , " Ramulator cache line size.","64");
-   ptx_file_line_stats_options(opp);
+   gpgpu_ctx->stats->ptx_file_line_stats_options(opp);
    //Final
 
 }
@@ -871,7 +871,7 @@ gpgpu_sim::gpgpu_sim(const gpgpu_sim_config &config, gpgpu_context *ctx)
       new memory_sub_partition *[m_memory_config->m_n_mem_sub_partition];
   for (unsigned i = 0; i < m_memory_config->m_n_mem; i++) {
     m_memory_partition_unit[i] =
-        new memory_partition_unit(i, m_memory_config, m_memory_stats, &m_ramulator_wrapper); //Final new memory_partition_unit(i, m_memory_config, m_memory_stats, this);
+        new memory_partition_unit(i, m_memory_config, m_memory_stats, this, &m_ramulator_wrapper); //Final new memory_partition_unit(i, m_memory_config, m_memory_stats, this);
     for (unsigned p = 0;
          p < m_memory_config->m_n_sub_partition_per_memory_channel; p++) {
       unsigned submpid =
