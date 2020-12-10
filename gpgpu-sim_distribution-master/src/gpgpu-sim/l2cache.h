@@ -102,6 +102,8 @@ class memory_partition_unit {
 
  private:
   unsigned m_id;
+  int return_q_size; //Final
+  int sched_q_size; //Final
   const memory_config *m_config;
   class memory_stats_t *m_stats;
   class memory_sub_partition **m_sub_partition;
