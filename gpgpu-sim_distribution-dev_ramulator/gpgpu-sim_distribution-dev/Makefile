@@ -223,6 +223,7 @@ gpgpu-sim_uarch: makedirs cuda-sim
 	$(MAKE) -C ./src/gpgpu-sim/ depend
 	$(MAKE) -C ./src/gpgpu-sim/
 	$(MAKE) -C ./src/ramulator/
+	#Final
 
 $(INTERSIM): makedirs cuda-sim gpgpu-sim_uarch
 	$(MAKE) "CREATE_LIBRARY=1" "DEBUG=$(DEBUG)" -C ./src/$(INTERSIM)
