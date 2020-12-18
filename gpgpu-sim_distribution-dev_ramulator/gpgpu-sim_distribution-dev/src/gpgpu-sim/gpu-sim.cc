@@ -658,7 +658,7 @@ void gpgpu_sim_config::reg_options(option_parser_t opp) {
                          "0");
 
    //Tara
-   option_parser_register(opp, "-gpgpu_ramulator_config", OPT_CSTR, &gpgpu_ramulator_config , " Ramulator config file address.","/home/nastaran/ramulator+gpu/amoebatc/src/ramulator/configs/GDDR5-config.cfg");
+   option_parser_register(opp, "-gpgpu_ramulator_config", OPT_CSTR, &gpgpu_ramulator_config , " Ramulator config file address.","/home/Final/gpgpu-sim_distribution-dev_ramulator/gpgpu-sim_distribution-dev/Ramulator_configs/GDDR5-7000-config.cfg");
    option_parser_register(opp, "-gpgpu_ramulator_cache_line_size", OPT_INT32, &gpgpu_ramulator_cache_line_size , " Ramulator cache line size.","64");
    gpgpu_ctx->stats->ptx_file_line_stats_options(opp);
    //Final
