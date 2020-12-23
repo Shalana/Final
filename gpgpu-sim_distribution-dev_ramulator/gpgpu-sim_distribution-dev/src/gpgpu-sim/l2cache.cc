@@ -642,7 +642,7 @@ void memory_sub_partition::print_cache_stat(unsigned &accesses,
 }
 
 void memory_sub_partition::print(FILE *fp) const {
-  if (!m_request_tracker.empty()) {
+  /*if (!m_request_tracker.empty()) {
     fprintf(fp, "Memory Sub Parition %u: pending memory requests:\n", m_id);
     for (std::set<mem_fetch *>::const_iterator r = m_request_tracker.begin();
          r != m_request_tracker.end(); ++r) {
@@ -654,6 +654,7 @@ void memory_sub_partition::print(FILE *fp) const {
     }
   }
   if (!m_config->m_L2_config.disabled()) m_L2cache->display_state(fp);
+  */
 }
 
 void memory_stats_t::visualizer_print(gzFile visualizer_file) {
