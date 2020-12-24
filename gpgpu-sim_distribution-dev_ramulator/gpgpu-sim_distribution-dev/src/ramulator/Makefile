@@ -87,7 +87,7 @@ depend:
 	makedepend -f$(OUTPUT_DIR)/Makefile.makedepend -p$(OUTPUT_DIR)/ $(CSRCS) 2> /dev/null
 
 $(OUTPUT_DIR)/%.$(OEXT): %.cc
-	clang -fPIC -O3 -std=c++11 -g -Wall -o $(OUTPUT_DIR)/$*.$(OEXT) -c $*.cc
+	g++ -fPIC -O3 -std=c++11 -g -Wall -I/usr/local/cuda/include -o $(OUTPUT_DIR)/$*.$(OEXT) -c $*.cc
 
 clean:
 	rm -f *.o core *~ *.a 
