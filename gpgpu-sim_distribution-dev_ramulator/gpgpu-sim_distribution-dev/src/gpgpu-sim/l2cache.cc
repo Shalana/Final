@@ -320,7 +320,7 @@ void memory_partition_unit::dram_cycle() {
             m_ramulator_wrapper->to_gpgpusim.erase(m_id);
             m_ramulator_wrapper->returned[m_id]--;
           }
-           m_dram->return_queue_pop();  //保留? Fainl
+           //m_dram->return_queue_pop();  //保留? Fainl
        }
   } else {
           pkt_q.pop_front();
@@ -328,7 +328,7 @@ void memory_partition_unit::dram_cycle() {
             m_ramulator_wrapper->to_gpgpusim.erase(m_id);
             m_ramulator_wrapper->returned[m_id]--;
           }    
-          m_dram->return_queue_pop(); //保留? Final
+          //m_dram->return_queue_pop(); //保留? Final
   }
 
 
@@ -336,8 +336,8 @@ void memory_partition_unit::dram_cycle() {
   m_ramulator_wrapper->advance_time(m_id); // it manages the completion of accesses recieved from Ramulator or sending new access to Ramulator but doesn't tick the Ramulator
   //Final
 
-  m_dram->cycle();  //保留? Final
-  m_dram->dram_log(SAMPLELOG);  //保留? Final
+  //m_dram->cycle();  //保留? Final
+  //m_dram->dram_log(SAMPLELOG);  //保留? Final
 
   // mem_fetch *mf = m_sub_partition[spid]->L2_dram_queue_top();
   // if( !m_dram->full(mf->is_write()) ) {
@@ -384,15 +384,21 @@ void memory_partition_unit::dram_cycle() {
        m_ramulator_wrapper->pending[m_id]<sched_q_size //Final 既然Ramulator取代DRAM,計算上就不應該考慮DRAM近來。
       /*!m_dram->full(m_dram_latency_queue.front().req->is_write())  Final*/) {
     mem_fetch *mf = m_dram_latency_queue.front().req;
-    
-    //Final 原本done有用途,但是在這done沒有用途
-    bool done=false;
-    // for now just send the return_q and sched_q size
-    done= m_ramulator_wrapper->FromGpusimDram_push(m_id, mf, return_q_size, sched_q_size);
-    //Final
+    mf->set_mid(m_id);
+		bool done=false;
+		// for now just send the return_q and sched_q size
+		done= m_ramulator_wrapper->FromGpusimDram_push(m_id, mf, return_q_size, sched_q_size);
+		if(done){
+			m_dram_latency_queue.pop_front();
+		}
+//     //Final 原本done有用途,但是在這done沒有用途
+//     bool done=false;
+//     // for now just send the return_q and sched_q size
+//     done= m_ramulator_wrapper->FromGpusimDram_push(m_id, mf, return_q_size, sched_q_size);
+//     //Final
 
-    m_dram_latency_queue.pop_front();//保留? Final
-    m_dram->push(mf);//保留? Final
+//     m_dram_latency_queue.pop_front();//保留? Final
+//     m_dram->push(mf);//保留? Final
   }
 }
 
