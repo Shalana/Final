@@ -304,6 +304,7 @@ void memory_partition_unit::dram_cycle() {
         assert(m_sub_partition[dest_spid]->get_id() == dest_global_spid);
         if (!m_sub_partition[dest_spid]->dram_L2_queue_full()) {
           if (mf_return->get_access_type() == L1_WRBK_ACC || mf_return->get_access_type() == L2_WRBK_ACC) {
+	       set_done(mf_return);
                m_sub_partition[dest_spid]->set_done(mf_return);
               delete mf_return;
          } else {
