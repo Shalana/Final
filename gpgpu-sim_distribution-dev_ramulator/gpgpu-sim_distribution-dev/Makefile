@@ -244,7 +244,6 @@ makedirs:
 	if [ ! -d $(SIM_OBJ_FILES_DIR)/cuda-sim/decuda_pred_table ]; then mkdir -p $(SIM_OBJ_FILES_DIR)/cuda-sim/decuda_pred_table; fi;
 	if [ ! -d $(SIM_OBJ_FILES_DIR)/gpgpu-sim ]; then mkdir -p $(SIM_OBJ_FILES_DIR)/gpgpu-sim; fi;
 	if [ ! -d $(SIM_OBJ_FILES_DIR)/ramulator ]; then mkdir -p $(SIM_OBJ_FILES_DIR)/ramulator; fi;
-	#Final
 	if [ ! -d $(SIM_OBJ_FILES_DIR)/libopencl ]; then mkdir -p $(SIM_OBJ_FILES_DIR)/libopencl; fi;
 	if [ ! -d $(SIM_OBJ_FILES_DIR)/libopencl/bin ]; then mkdir -p $(SIM_OBJ_FILES_DIR)/libopencl/bin; fi;
 	if [ ! -d $(SIM_OBJ_FILES_DIR)/$(INTERSIM) ]; then mkdir -p $(SIM_OBJ_FILES_DIR)/$(INTERSIM); fi;
