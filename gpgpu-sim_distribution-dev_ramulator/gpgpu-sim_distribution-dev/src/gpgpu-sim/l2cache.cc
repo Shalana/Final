@@ -308,6 +308,7 @@ void memory_partition_unit::dram_cycle() {
                m_sub_partition[dest_spid]->set_done(mf_return);
               delete mf_return;
          } else {
+		mf_return->set_reply();
               m_sub_partition[dest_spid]->dram_L2_queue_push(mf_return);
               mf_return->set_status(IN_PARTITION_DRAM_TO_L2_QUEUE,
                               m_gpu->gpu_sim_cycle + m_gpu->gpu_tot_sim_cycle);
