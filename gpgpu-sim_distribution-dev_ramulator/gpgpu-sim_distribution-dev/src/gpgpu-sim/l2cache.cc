@@ -295,6 +295,7 @@ void memory_partition_unit::dram_cycle() {
   // of the original sub partition
 
   if(!m_ramulator_wrapper->to_gpgpusim_empty(m_id)){  //Final
+      printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       auto& pkt_q = m_ramulator_wrapper->to_gpgpusim.find(m_id)->second;  //Final
       mem_fetch* mf_return = pkt_q.front(); //Final
     //mem_fetch *mf_return = m_dram->return_queue_top(); Final
@@ -325,6 +326,7 @@ void memory_partition_unit::dram_cycle() {
            //m_dram->return_queue_pop();  //保留? Fainl
        }
   } else {
+	  printf("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
           pkt_q.pop_front();
           if (!pkt_q.size()){ //Final
             m_ramulator_wrapper->to_gpgpusim.erase(m_id);
@@ -391,6 +393,7 @@ void memory_partition_unit::dram_cycle() {
 		// for now just send the return_q and sched_q size
 		done= m_ramulator_wrapper->FromGpusimDram_push(m_id, mf, return_q_size, sched_q_size);
 		if(done){
+			printf("ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc");
 			m_dram_latency_queue.pop_front();
 		}
 //     //Final 原本done有用途,但是在這done沒有用途
