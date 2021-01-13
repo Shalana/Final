@@ -33,11 +33,9 @@ bool Ramulator::FromGpusimDram_push(unsigned partition_id, mem_fetch* mf, int re
 	bool accepted = true;
 	if(mf->get_sid()<=m_num_cores){
 		if( mf->get_type() == READ_REQUEST ){
-			printf("read!!!");
 			reads[mf->get_addr()].push_back(mf);
 			from_gpgpusim[partition_id].push_back(mf);
 		} else if ( mf->get_type() == WRITE_REQUEST) {
-			printf("write!!!");
 			from_gpgpusim[partition_id].push_back(mf);
 		} else {
 			//the access is not read nor write!
